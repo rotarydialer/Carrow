@@ -1,3 +1,6 @@
+# certain express generated
+bin/
+
 # Logs
 logs
 *.log
