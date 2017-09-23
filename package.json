@@ -1,0 +1,24 @@
+{
+  "name": "carrow",
+  "version": "0.0.1",
+  "description": "PoC for Carrow, a location-based sharing platform.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rotarydialer/Carrow.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/rotarydialer/Carrow/issues"
+  },
+  "homepage": "https://github.com/rotarydialer/Carrow#readme",
+  "dependencies": {
+    "ejs": "^2.5.7",
+    "express": "^4.15.4",
+    "pg-promise": "^6.9.0"
+  }
+}
