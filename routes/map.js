@@ -3,6 +3,7 @@ var router = express.Router();
 var googlemaps = require('googlemaps');
 var geocoder = require('geocoder');
 var geojson = require('geojson');
+var pandas = require('pandas-js');
 
 var startingLocation ='530 Valley Rd, Montclair, NJ';
 
@@ -52,6 +53,16 @@ router.get('/', function(req, res, next) {
         res.send(geojsonResult);
     });
     
+});
+
+router.get('/pandas', function(req, res, next) {
+    // test and tinker with pandas
+
+    var ds = new pandas.Series([1, 2, 3, 4], {name: 'My test name', index: [2, 3, 4, 5]});
+    ds.toString();
+
+    res.send(ds.toString());
+
 });
 
 router.get('/geojson', function(req, res, next) {
