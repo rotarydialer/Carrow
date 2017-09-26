@@ -3,7 +3,6 @@ var router = express.Router();
 var googlemaps = require('googlemaps');
 var geocoder = require('geocoder');
 var geojson = require('geojson');
-var pandas = require('pandas-js');
 
 var startingLocation ='530 Valley Rd, Montclair, NJ';
 
