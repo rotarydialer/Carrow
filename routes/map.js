@@ -18,7 +18,11 @@ var publicConfig = {
 var gmAPI = new googlemaps(publicConfig);
 
 /* Show a map! */
-router.get('/', function(req, res, next) {
+router.get('/', function(req, res) {
+    res.render('map', { title: 'Carrow: Map' });
+});
+
+router.get('/geocoder', function(req, res, next) {
     geocoder.geocode(startingLocation, function(err, result) {
 
         console.log('geocoder results...');
