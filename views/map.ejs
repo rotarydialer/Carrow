@@ -32,7 +32,9 @@
       map = new google.maps.Map(document.getElementById('map'), {
         zoom: 2,
         center: new google.maps.LatLng(2.8, -187.3),
-        mapTypeId: 'terrain'
+        mapTypeId: 'roadmap',
+        minZoom: 6,
+        maxZoom: 15
       });
 
       // Create a <script> tag and set the USGS URL as the source.
@@ -66,9 +68,12 @@
       })
     }
 
+
       // Loop through the results array and place a marker for each
       // set of coordinates.
       window.eqfeed_callback = function(results) {
+        var bounds = new google.maps.LatLngBounds();
+
         for (var i = 0; i < results.features.length; i++) {
           var coords = results.features[i].geometry.coordinates;
           var latLng = new google.maps.LatLng(coords[1],coords[0]);
@@ -76,7 +81,10 @@
             position: latLng,
             map: map
           });
+          bounds.extend(marker.getPosition());
         }
+
+        map.fitBounds(bounds);
       }
   </script>
   <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBUonXcsBfuuR-wtqvHuI_Ojfl95as0NMk&callback=initMap">
