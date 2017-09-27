@@ -37,7 +37,7 @@ router.get('/geocoder', function(req, res, next) {
         // console.log(result.results);
 
         var data = { 
-            'name': 'My Location',
+            'name': 'Not used right now',
             'category': 'User', 
             'street': street, 
             'lat': lat, 
@@ -75,7 +75,7 @@ router.get('/userlocation', function(req, res, next) {
         // TODO: assemble this properly later
         var data = [
             { 
-                'name': 'My Location',
+                'name': 'You are here',
                 'category': 'User', 
                 'street': street, 
                 'lat': lat, 
