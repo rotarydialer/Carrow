@@ -6,6 +6,7 @@
     <%= title %>
   </title>
   <link rel='stylesheet' href='/stylesheets/style.css' />
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <style>
     /* Always set the map height explicitly to define the size of the div
        * element that contains the map. */
@@ -36,6 +37,7 @@
         minZoom: 12,
         maxZoom: 18
       });
+    }
 
       // Create a <script> tag and set the USGS URL as the source.
       //var script = document.createElement('script');
@@ -44,48 +46,38 @@
       //script.src = 'https://developers.google.com/maps/documentation/javascript/examples/json/earthquake_GeoJSONP.js';
       //document.getElementsByTagName('head')[0].appendChild(script);
 
-      //REST call for this data will be from http://localhost:3000/map/geojson
-      //for now, hard-code the results that will come from above
-      eqfeed_callback ({
-        "type": "FeatureCollection",
-        "features": [
-          {
-            "type": "Feature",
-            "geometry": {
-              "type": "Point",
-              "coordinates": [
-                -74.20796039999999,
-                40.8377986
-              ]
+      $.ajax({
+            url: "/map/geojson",
+            type: "GET",
+
+            contentType: 'application/json; charset=utf-8',
+            success: function(results) {
+                console.log('Got some JSON...');
+                console.log(results);
+
+                var bounds = new google.maps.LatLngBounds();
+
+                console.log('feat len: ' + results.features.length);
+
+                for (var i = 0; i < results.features.length; i++) {
+                  var coords = results.features[i].geometry.coordinates;
+                  var latLng = new google.maps.LatLng(coords[1],coords[0]);
+                  var marker = new google.maps.Marker({
+                    position: latLng,
+                    map: map
+                  });
+                  bounds.extend(marker.getPosition());
+                }
+
+                map.fitBounds(bounds);
+
             },
-            "properties": {
-              "name": "My Location",
-              "category": "User",
-              "street": "Valley Rd"
-            }
-          }
-        ]
-      })
-    }
+            error : function(jqXHR, textStatus, errorThrown) {
+            },
 
+            timeout: 120000,
+        });
 
-      // Loop through the results array and place a marker for each
-      // set of coordinates.
-      window.eqfeed_callback = function(results) {
-        var bounds = new google.maps.LatLngBounds();
-
-        for (var i = 0; i < results.features.length; i++) {
-          var coords = results.features[i].geometry.coordinates;
-          var latLng = new google.maps.LatLng(coords[1],coords[0]);
-          var marker = new google.maps.Marker({
-            position: latLng,
-            map: map
-          });
-          bounds.extend(marker.getPosition());
-        }
-
-        map.fitBounds(bounds);
-      }
   </script>
   <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBUonXcsBfuuR-wtqvHuI_Ojfl95as0NMk&callback=initMap">
 
