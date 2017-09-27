@@ -58,8 +58,8 @@ router.get('/geocoder', function(req, res, next) {
     
 });
 
-router.get('/geojson', function(req, res, next) {
-    // test and tinker here
+router.get('/userlocation', function(req, res, next) {
+    // return the user's location
     geocoder.geocode(startingLocation, function(err, result) {
         
         console.log('GeoJSON preformat:');
@@ -100,7 +100,6 @@ router.get('/geojson', function(req, res, next) {
 
 router.get('/gmapi', function(req, res, next) {
 
-    // geocode API 
     var geocodeParams = {
         "address":    "530 Valley Rd, Montclair, NJ, USA"
     };
