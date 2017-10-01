@@ -103,11 +103,11 @@ router.get('/cars' , function(req, res, next) {
     var foundCars = [5];
 
     // TODO: get actual data!
-    foundCars[0] = { 'lat':'41.409226','lng': '-75.660923', 'name': 'Honda Civic', 'color': '#06406F', 'opacity': '1', 'fillColor': '#DDDDFF', };
-    foundCars[1] = { 'lat':'41.409897','lng': '-75.664530', 'name': 'Nissan Maxima' };
-    foundCars[2] = { 'lat':'41.412780','lng': '-75.666083', 'name': 'Porsche Cayenne' };
-    foundCars[3] = { 'lat':'41.409019','lng': '-75.656800', 'name': 'Tesla Model X P100D' };
-    foundCars[4] = { 'lat':'41.409409','lng': '-75.670819', 'name': 'Yugo GV Sport' };
+    foundCars[0] = { 'lat':'41.409226','lng': '-75.660923', 'name': 'Honda Civic', 'status': 'available' };
+    foundCars[1] = { 'lat':'41.409897','lng': '-75.664530', 'name': 'Nissan Maxima', 'status': 'claimed' };
+    foundCars[2] = { 'lat':'41.412780','lng': '-75.666083', 'name': 'Porsche Cayenne', 'status': 'available' };
+    foundCars[3] = { 'lat':'41.409019','lng': '-75.656800', 'name': 'Tesla Model X P100D', 'status': 'available' };
+    foundCars[4] = { 'lat':'41.409409','lng': '-75.670819', 'name': 'Yugo GV Sport', 'status': 'claimed' };
 
     console.log('found cars: ' + JSON.stringify(foundCars[0]) );
 
@@ -115,11 +115,7 @@ router.get('/cars' , function(req, res, next) {
         { 
             Point: ['lat', 'lng'],
             extra: {
-                style: {
-                    "color": "#ff7800",
-                    "weight": 5,
-                    "opacity": 0.65
-                }
+                'category': 'car'
             }
         });
 
