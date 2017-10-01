@@ -54,12 +54,20 @@
             success: function(results) {
                 var bounds = new google.maps.LatLngBounds();
 
+                var pinImage = new google.maps.MarkerImage(
+                        'http://chart.googleapis.com/chart?chst=d_map_xpin_icon&chld=pin_star%7Chome%7Cba0712%7CFF0000',
+                        new google.maps.Size(21, 34),
+                        new google.maps.Point(0,0),
+                        new google.maps.Point(10, 34)
+                      );
+
                 for (var i = 0; i < results.features.length; i++) {
                   var coords = results.features[i].geometry.coordinates;
                   var latLng = new google.maps.LatLng(coords[1],coords[0]);
                   var marker = new google.maps.Marker({
                     position: latLng,
                     map: map,
+                    icon: pinImage,
                     title: results.features[i].properties.name
                   });
                   //bounds.extend(marker.getPosition());
@@ -72,9 +80,6 @@
 
                   contentType: 'application/json; charset=utf-8',
                   success: function(results) {
-
-                      //var bounds = new google.maps.LatLngBounds();
-
                       var pinColor = '00FFFF';
                       var pinImage = new google.maps.MarkerImage(
                         'http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=•|' + pinColor,
