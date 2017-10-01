@@ -4,7 +4,7 @@ var googlemaps = require('googlemaps');
 var geocoder = require('geocoder');
 var geojson = require('geojson');
 
-var startingLocation ='530 Valley Rd, Montclair, NJ';
+var startingLocation ='523 Linden St, Scranton, PA 18503';
 
 var publicConfig = {
     key: 'AIzaSyBXDUQZ7EOVrbsWA2ee5ORX7U0MrbC3DME',
@@ -98,10 +98,33 @@ router.get('/userlocation', function(req, res, next) {
     
 });
 
+router.get('/cars' , function(req, res, next) {
+
+    var foundCars = [5];
+
+    // TODO: get actual data!
+    foundCars[0] = { 'lat':'41.409226','lng': '-75.660923', 'name': 'Honda Civic' };
+    foundCars[1] = { 'lat':'41.409897','lng': '-75.664530', 'name': 'Nissan Maxima' };
+    foundCars[2] = { 'lat':'41.412780','lng': '-75.666083', 'name': 'Porsche Cayenne' };
+    foundCars[3] = { 'lat':'41.409019','lng': '-75.656800', 'name': 'Tesla Model X P100D' };
+    foundCars[4] = { 'lat':'41.409409','lng': '-75.670819', 'name': 'Yugo GV Sport' };
+
+    console.log('found cars: ' + JSON.stringify(foundCars[0]) );
+
+    var geojsonResult = geojson.parse(foundCars, 
+        { 
+            Point: ['lat', 'lng']
+        });
+
+    console.log('geojsonResult: ' + geojsonResult );
+
+    res.send(geojsonResult);
+});
+
 router.get('/gmapi', function(req, res, next) {
 
     var geocodeParams = {
-        "address":    "530 Valley Rd, Montclair, NJ, USA"
+        "address":    "523 Linden St, Scranton, PA 18503"
     };
     
     gmAPI.geocode(geocodeParams, function(err, result){
