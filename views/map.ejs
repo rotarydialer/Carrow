@@ -103,7 +103,9 @@
                           map: map,
                           icon: pinImage,
                           shadow: pinShadow,
-                          title: results.features[i].properties.name
+                          title: 'Model: ' + results.features[i].properties.name + '\n' + 
+                            'Owner: ' + results.features[i].properties.owner + '\n' +
+                            'Status: ' + results.features[i].properties.status
                         });
                         
                         bounds.extend(marker.getPosition());
