@@ -70,12 +70,43 @@
 
                 map.fitBounds(bounds);
 
+                $.ajax({
+                  url: "/map/cars",
+                  type: "GET",
+
+                  contentType: 'application/json; charset=utf-8',
+                  success: function(results) {
+
+                      var bounds = new google.maps.LatLngBounds();
+
+                      for (var i = 0; i < results.features.length; i++) {
+                        var coords = results.features[i].geometry.coordinates;
+                        var latLng = new google.maps.LatLng(coords[1],coords[0]);
+                        var marker = new google.maps.Marker({
+                          position: latLng,
+                          map: map,
+                          title: results.features[i].properties.name
+                        });
+                        bounds.extend(marker.getPosition());
+                      }
+
+                      map.fitBounds(bounds);
+
+                  },
+                  error : function(jqXHR, textStatus, errorThrown) {
+                  },
+
+                  timeout: 120000,
+              });
+
             },
             error : function(jqXHR, textStatus, errorThrown) {
             },
 
             timeout: 120000,
         });
+
+        
 
   </script>
   <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBUonXcsBfuuR-wtqvHuI_Ojfl95as0NMk&callback=initMap">
