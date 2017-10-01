@@ -34,7 +34,7 @@
         zoom: 2,
         center: new google.maps.LatLng(2.8, -187.3),
         mapTypeId: 'roadmap',
-        minZoom: 12,
+        minZoom: 13,
         maxZoom: 18
       });
     }
@@ -68,7 +68,7 @@
                   bounds.extend(marker.getPosition());
                 }
 
-                map.fitBounds(bounds);
+                //map.fitBounds(bounds);
 
                 $.ajax({
                   url: "/map/cars",
@@ -79,14 +79,25 @@
 
                       var bounds = new google.maps.LatLngBounds();
 
+                      var pinColor = '00FFFF';
+                      var pinImage = new google.maps.MarkerImage(
+                        'http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=•|' + pinColor,
+                        new google.maps.Size(21, 34),
+                        new google.maps.Point(0,0),
+                        new google.maps.Point(10, 34)
+                      );
+
                       for (var i = 0; i < results.features.length; i++) {
                         var coords = results.features[i].geometry.coordinates;
                         var latLng = new google.maps.LatLng(coords[1],coords[0]);
                         var marker = new google.maps.Marker({
                           position: latLng,
                           map: map,
+                          icon: pinImage,
                           title: results.features[i].properties.name
                         });
+
+                        
                         bounds.extend(marker.getPosition());
                       }
 
