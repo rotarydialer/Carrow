@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>
+    <%= title %>
+  </title>
+  <link rel='stylesheet' href='/stylesheets/style.css' />
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+  <style> 
+    input[type=text] {
+        width: 130px;
+        box-sizing: border-box;
+        border: 2px solid #C6C6CF;
+        border-radius: 4px;
+        font-size: 16px;
+        background-color: white;
+        background-image: url('/images/searchicon.png');
+        background-position: 10px 10px; 
+        background-repeat: no-repeat;
+        padding: 12px 20px 12px 40px;
+        -webkit-transition: width 0.4s ease-in-out;
+        transition: width 0.4s ease-in-out;
+    }
+    
+    input[type=text]:focus {
+        width: 100%;
+    }
+    </style>
+
+</head>
+
+<body>
+  <div class="carrow-base">
+    <div><h1>Carrow</h1></div>
+
+    Enter your location
+    
+    <form>
+      <input type="text" name="search" placeholder="Search..">
+    </form>
+
+  </div>
+</body>
+
+</html>
