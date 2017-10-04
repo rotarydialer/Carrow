@@ -54,11 +54,16 @@
             success: function(results) {
                 var bounds = new google.maps.LatLngBounds();
 
+                // dynamic icons as described here:
+                // https://developers.google.com/chart/infographics/docs/dynamic_icons#special_pins
+                // MarkerImage documentation here:
+                // https://developers.google.com/maps/documentation/javascript/markers
                 var pinImage = new google.maps.MarkerImage(
-                        'http://chart.googleapis.com/chart?chst=d_map_xpin_icon&chld=pin_star%7Chome%7Cba0712%7CFF0000',
-                        new google.maps.Size(21, 34),
+                        'http://chart.googleapis.com/chart?chst=d_map_xpin_icon&chld=pin_sleft%7Chome%7Cba0712%7CFF0000',
+                        new google.maps.Size(31,51),
                         new google.maps.Point(0,0),
-                        new google.maps.Point(10, 34)
+                        new google.maps.Point(10,34),
+                        new google.maps.Size(31,51)
                       );
 
                 for (var i = 0; i < results.features.length; i++) {
@@ -66,59 +71,59 @@
                   var latLng = new google.maps.LatLng(coords[1],coords[0]);
                   var marker = new google.maps.Marker({
                     position: latLng,
-                    map: map,
                     icon: pinImage,
+                    map: map,
                     title: results.features[i].properties.name
                   });
                   bounds.extend(marker.getPosition());
                 }
                 map.fitBounds(bounds);
 
-              //   $.ajax({
-              //     url: "/map/cars",
-              //     type: "GET",
+                $.ajax({
+                  url: "/map/cars",
+                  type: "GET",
 
-              //     contentType: 'application/json; charset=utf-8',
-              //     success: function(results) {
-              //         var pinColor = '00FFFF';
-              //         var pinImage = new google.maps.MarkerImage(
-              //           'http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=•|' + pinColor,
-              //           new google.maps.Size(21, 34),
-              //           new google.maps.Point(0,0),
-              //           new google.maps.Point(10, 34)
-              //         );
+                  contentType: 'application/json; charset=utf-8',
+                  success: function(results) {
+                      var pinColor = '00FFFF';
+                      var pinImage = new google.maps.MarkerImage(
+                        'http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=•|' + pinColor,
+                        new google.maps.Size(21, 34),
+                        new google.maps.Point(0,0),
+                        new google.maps.Point(10, 34)
+                      );
 
-              //         var pinShadow = new google.maps.MarkerImage(
-              //           'http://chart.apis.google.com/chart?chst=d_map_pin_shadow',
-              //           new google.maps.Size(40, 37),
-              //           new google.maps.Point(0, 0),
-              //           new google.maps.Point(12, 35)
-              //       );
+                      var pinShadow = new google.maps.MarkerImage(
+                        'http://chart.apis.google.com/chart?chst=d_map_pin_shadow',
+                        new google.maps.Size(40, 37),
+                        new google.maps.Point(0, 0),
+                        new google.maps.Point(12, 35)
+                    );
 
-              //         for (var i = 0; i < results.features.length; i++) {
-              //           var coords = results.features[i].geometry.coordinates;
-              //           var latLng = new google.maps.LatLng(coords[1],coords[0]);
-              //           var marker = new google.maps.Marker({
-              //             position: latLng,
-              //             map: map,
-              //             icon: pinImage,
-              //             shadow: pinShadow,
-              //             title: 'Model: ' + results.features[i].properties.name + '\n' + 
-              //               'Owner: ' + results.features[i].properties.owner + '\n' +
-              //               'Status: ' + results.features[i].properties.status
-              //           });
+                      for (var i = 0; i < results.features.length; i++) {
+                        var coords = results.features[i].geometry.coordinates;
+                        var latLng = new google.maps.LatLng(coords[1],coords[0]);
+                        var marker = new google.maps.Marker({
+                          position: latLng,
+                          map: map,
+                          icon: pinImage,
+                          shadow: pinShadow,
+                          title: 'Model: ' + results.features[i].properties.name + '\n' + 
+                            'Owner: ' + results.features[i].properties.owner + '\n' +
+                            'Status: ' + results.features[i].properties.status
+                        });
                         
-              //           bounds.extend(marker.getPosition());
-              //         }
+                        bounds.extend(marker.getPosition());
+                      }
 
-              //         map.fitBounds(bounds);
+                      //map.fitBounds(bounds);
 
-              //     },
-              //     error : function(jqXHR, textStatus, errorThrown) {
-              //     },
+                  },
+                  error : function(jqXHR, textStatus, errorThrown) {
+                  },
 
-              //     timeout: 120000,
-              // });
+                  timeout: 120000,
+              });
 
             },
             error : function(jqXHR, textStatus, errorThrown) {
