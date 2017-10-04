@@ -21,6 +21,12 @@ router.get('/', function(req, res) {
     res.render('map', { title: 'Carrow: Map' });
 });
 
+/* Show a map based on an address entered by a user */
+router.post('/', function(req, res) {
+    startingLocation = req.body.search;
+    res.render('map', { title: 'Carrow: ' + startingLocation, userlocation: startingLocation });
+});
+
 router.get('/geocoder', function(req, res, next) {
     geocoder.geocode(startingLocation, function(err, result) {
 
@@ -32,9 +38,6 @@ router.get('/geocoder', function(req, res, next) {
         console.log(startingLocation + ':');
         console.log('  ├─ lattitude: ' + lat);
         console.log('  └─ longitude: ' + lng);
-
-        // console.log('Unformatted:');
-        // console.log(result.results);
 
         var data = { 
             'name': 'Not used right now',
