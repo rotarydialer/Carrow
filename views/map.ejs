@@ -121,22 +121,47 @@
                     );
 
                       for (var i = 0; i < results.features.length; i++) {
-                        var coords = results.features[i].geometry.coordinates;
-                        var latLng = new google.maps.LatLng(coords[1],coords[0]);
-                        var marker = new google.maps.Marker({
-                          position: latLng,
-                          map: map,
-                          icon: pinImage,
-                          shadow: pinShadow,
-                          title: 'Model: ' + results.features[i].properties.name + '\n' + 
-                            'Owner: ' + results.features[i].properties.owner + '\n' +
-                            'Status: ' + results.features[i].properties.status
-                        });
-                        
-                        bounds.extend(marker.getPosition());
+
+                        (function () { // this closure is required for the info windows to show properly
+
+                          // TEMP: car details info window
+                          var infoWindowContent = '<div id="content">'+
+                                                  '<div id="siteNotice">'+
+                                                  '</div>'+
+                                                  '<h2 id="firstHeading" class="firstHeading">' + results.features[i].properties.name + '</h2>'+
+                                                  '<div id="bodyContent">'+
+                                                  '<p><b>Owner:</b> ' + results.features[i].properties.owner + '</p>'+
+                                                  '<p><b>Status:</b> ' + results.features[i].properties.status + '</p>'+
+                                                  '</div>'+
+                                                  '</div>';
+
+                          var carInfoWindow = new google.maps.InfoWindow({
+                            content: infoWindowContent
+                          });
+                                                  
+                          var coords = results.features[i].geometry.coordinates;
+                          var latLng = new google.maps.LatLng(coords[1],coords[0]);
+                          var marker = new google.maps.Marker({
+                            position: latLng,
+                            map: map,
+                            icon: pinImage,
+                            shadow: pinShadow,
+                            title: 'Model: ' + results.features[i].properties.name + '\n' + 
+                              'Owner: ' + results.features[i].properties.owner + '\n' +
+                              'Status: ' + results.features[i].properties.status
+                          });
+
+                          google.maps.event.addListener(marker, 'click', function() {
+                            carInfoWindow.open(map, marker);
+                          });
+                          
+                          bounds.extend(marker.getPosition());
+
+                        }());
+
                       }
 
-                      //map.fitBounds(bounds);
+                      map.fitBounds(bounds);
 
                   },
                   error : function(jqXHR, textStatus, errorThrown) {
