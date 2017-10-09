@@ -67,6 +67,21 @@
                       );
 
                 for (var i = 0; i < results.features.length; i++) {
+                  // TEMP: user location info window
+                  var infoWindowContent = '<div id="content">'+
+                                          '<div id="siteNotice">'+
+                                          '</div>'+
+                                          '<h2 id="firstHeading" class="firstHeading">Your Location</h2>'+
+                                          '<div id="bodyContent">'+
+                                          '<p>This is where you are right now.</p>'+
+                                          '<p>We\'ll find some available vehicles nearby and get you on your way.</p>'+
+                                          '</div>'+
+                                          '</div>';
+
+                  var infoWindow = new google.maps.InfoWindow({
+                    content: infoWindowContent
+                  });
+
                   var coords = results.features[i].geometry.coordinates;
                   var latLng = new google.maps.LatLng(coords[1],coords[0]);
                   var marker = new google.maps.Marker({
@@ -75,6 +90,11 @@
                     map: map,
                     title: results.features[i].properties.name
                   });
+
+                  marker.addListener('click', function() {
+                    infoWindow.open(map, marker);
+                  });
+
                   bounds.extend(marker.getPosition());
                 }
                 map.fitBounds(bounds);
@@ -141,7 +161,13 @@
 
   <div class="carrow-base">
     <div><h1>Carrow</h1></div>
-    <div>Let's see what's available around <%= userlocation %> </div>
+    <div>Let's see what's available around 
+      <% if (typeof userlocation != 'undefined') { %>
+         <%= userlocation %>
+      <% } else { %>
+        <%= 'you...' %>
+      <% } %>
+    </div>
   </div>
 </body>
 
