@@ -114,11 +114,16 @@ router.get('/cars' , function(req, res, next) {
     // foundCars[4] = { 'lat':'41.409409','lng': '-75.670819', 'name': 'Yugo GV Sport', 'status': 'claimed', 'owner': 'Oliver' };    foundCars[0] = { 'lat':'41.409226','lng': '-75.660923', 'name': 'Honda Civic', 'status': 'available', 'owner': 'Sylvia' };
 
     // fake Montclair
-    foundCars[0] = { 'lat':'40.864828','lng': '-74.194615', 'name': 'Honda Civic', 'loc_desc': 'MSU parking lot near the stadium', 'status': 'available', 'owner': 'Sylvia' };
-    foundCars[1] = { 'lat':'40.857688','lng': '-74.202161', 'name': 'Nissan Maxima', 'loc_desc': 'Montclair Heights station parking lot', 'status': 'claimed', 'owner': 'Phil' };
-    foundCars[2] = { 'lat':'40.856992','lng': '-74.200910', 'name': 'Porsche Cayenne', 'loc_desc': 'My driveway on Hamilton', 'status': 'available', 'owner': 'Trevor' };
-    foundCars[3] = { 'lat':'40.848576','lng': '-74.205249', 'name': 'Tesla Model X P100D', 'loc_desc': 'Mountain Ave station', 'status': 'available', 'owner': 'Cynthia' };
-    foundCars[4] = { 'lat':'40.852259','lng': '-74.200761', 'name': 'Yugo GV Sport', 'loc_desc': 'Macopin - on the street in front of my house', 'status': 'claimed', 'owner': 'Oliver' };
+    foundCars[0] = { 'lat':'40.864828','lng': '-74.194615', 'name': 'Honda Civic', 'loc_desc': 'MSU parking lot near the stadium', 'status': 'available', 'owner': 'Sylvia',
+        'image': 'http://www.thedigeratilife.com/images/honda-civic-1999.jpg' };
+    foundCars[1] = { 'lat':'40.857688','lng': '-74.202161', 'name': 'Nissan Maxima', 'loc_desc': 'Montclair Heights station parking lot', 'status': 'claimed', 'owner': 'Phil',
+        'image': 'http://idolosol.com/images/craigslist-san-diego-cars-1.jpg' };
+    foundCars[2] = { 'lat':'40.856992','lng': '-74.200910', 'name': 'Porsche Cayenne', 'loc_desc': 'My driveway on Hamilton', 'status': 'available', 'owner': 'Trevor',
+        'image': 'http://americancarsclassified.info/car-photo1/2011-Porsche-Cayenne-1006177.jpg' };
+    foundCars[3] = { 'lat':'40.848576','lng': '-74.205249', 'name': 'Tesla Model X P100D', 'loc_desc': 'Mountain Ave station', 'status': 'available', 'owner': 'Cynthia',
+        'image': 'http://americancarsclassified.info/car-photo1/2016-Tesla-Model%20X-2411843.jpg' };
+    foundCars[4] = { 'lat':'40.852259','lng': '-74.200761', 'name': 'Yugo GV Sport', 'loc_desc': 'Macopin - on the street in front of my house', 'status': 'claimed', 'owner': 'Oliver',
+        'image': 'https://i.ytimg.com/vi/ZijanUaeF2Y/hqdefault.jpg' };
 
     console.log('found cars: ' + JSON.stringify(foundCars[0]) );
 

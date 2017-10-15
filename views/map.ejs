@@ -130,8 +130,10 @@
                                                   '</div>'+
                                                   '<h2 id="firstHeading" class="firstHeading">' + results.features[i].properties.name + '</h2>'+
                                                   '<div id="bodyContent">'+
+                                                  '<p><b>Location:</b> ' + results.features[i].properties.loc_desc + '</p>'+
                                                   '<p><b>Owner:</b> ' + results.features[i].properties.owner + '</p>'+
                                                   '<p><b>Status:</b> ' + results.features[i].properties.status + '</p>'+
+                                                  '<div id="vehicleImage"><img width="100px" height="75px" src="' + results.features[i].properties.image + '"></div>'
                                                   '</div>'+
                                                   '</div>';
 
@@ -146,9 +148,7 @@
                             map: map,
                             icon: pinImage,
                             shadow: pinShadow,
-                            title: 'Model: ' + results.features[i].properties.name + '\n' + 
-                              'Owner: ' + results.features[i].properties.owner + '\n' +
-                              'Status: ' + results.features[i].properties.status
+                            title: results.features[i].properties.name + '\n'
                           });
 
                           google.maps.event.addListener(marker, 'click', function() {
