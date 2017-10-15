@@ -106,11 +106,19 @@ router.get('/cars' , function(req, res, next) {
     var foundCars = [5];
 
     // TODO: get actual data!
-    foundCars[0] = { 'lat':'41.409226','lng': '-75.660923', 'name': 'Honda Civic', 'status': 'available', 'owner': 'Sylvia' };
-    foundCars[1] = { 'lat':'41.409897','lng': '-75.664530', 'name': 'Nissan Maxima', 'status': 'claimed', 'owner': 'Phil' };
-    foundCars[2] = { 'lat':'41.412780','lng': '-75.666083', 'name': 'Porsche Cayenne', 'status': 'available', 'owner': 'Trevor' };
-    foundCars[3] = { 'lat':'41.409019','lng': '-75.656800', 'name': 'Tesla Model X P100D', 'status': 'available', 'owner': 'Cynthia' };
-    foundCars[4] = { 'lat':'41.409409','lng': '-75.670819', 'name': 'Yugo GV Sport', 'status': 'claimed', 'owner': 'Oliver' };
+    // fake Scranton
+    // foundCars[0] = { 'lat':'41.409226','lng': '-75.660923', 'name': 'Honda Civic', 'status': 'available', 'owner': 'Sylvia' };
+    // foundCars[1] = { 'lat':'41.409897','lng': '-75.664530', 'name': 'Nissan Maxima', 'status': 'claimed', 'owner': 'Phil' };
+    // foundCars[2] = { 'lat':'41.412780','lng': '-75.666083', 'name': 'Porsche Cayenne', 'status': 'available', 'owner': 'Trevor' };
+    // foundCars[3] = { 'lat':'41.409019','lng': '-75.656800', 'name': 'Tesla Model X P100D', 'status': 'available', 'owner': 'Cynthia' };
+    // foundCars[4] = { 'lat':'41.409409','lng': '-75.670819', 'name': 'Yugo GV Sport', 'status': 'claimed', 'owner': 'Oliver' };    foundCars[0] = { 'lat':'41.409226','lng': '-75.660923', 'name': 'Honda Civic', 'status': 'available', 'owner': 'Sylvia' };
+
+    // fake Montclair
+    foundCars[0] = { 'lat':'40.864828','lng': '-74.194615', 'name': 'Honda Civic', 'loc_desc': 'MSU parking lot near the stadium', 'status': 'available', 'owner': 'Sylvia' };
+    foundCars[1] = { 'lat':'40.857688','lng': '-74.202161', 'name': 'Nissan Maxima', 'loc_desc': 'Montclair Heights station parking lot', 'status': 'claimed', 'owner': 'Phil' };
+    foundCars[2] = { 'lat':'40.856992','lng': '-74.200910', 'name': 'Porsche Cayenne', 'loc_desc': 'My driveway on Hamilton', 'status': 'available', 'owner': 'Trevor' };
+    foundCars[3] = { 'lat':'40.848576','lng': '-74.205249', 'name': 'Tesla Model X P100D', 'loc_desc': 'Mountain Ave station', 'status': 'available', 'owner': 'Cynthia' };
+    foundCars[4] = { 'lat':'40.852259','lng': '-74.200761', 'name': 'Yugo GV Sport', 'loc_desc': 'Macopin - on the street in front of my house', 'status': 'claimed', 'owner': 'Oliver' };
 
     console.log('found cars: ' + JSON.stringify(foundCars[0]) );
 
