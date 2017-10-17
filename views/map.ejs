@@ -124,6 +124,13 @@
 
                         (function () { // this closure is required for the info windows to show properly
 
+                          var availFrm='';
+                          var availTo='';
+                          if (results.features[i].properties.status == 'Available') {
+                            availFrm = '<br>' + '&nbsp;&nbsp;&nbsp; Available from ' + results.features[i].properties.availableFrom;
+                            availTo = '<br>' + '&nbsp;&nbsp;&nbsp; Return by ' + results.features[i].properties.availableTo;
+                          }
+
                           // TEMP: car details info window
                           var infoWindowContent = '<div id="content">'+
                                                   '<div id="siteNotice">'+
@@ -132,7 +139,9 @@
                                                   '<div id="bodyContent">'+
                                                   '<p><b>Location:</b> ' + results.features[i].properties.loc_desc + '</p>'+
                                                   '<p><b>Owner:</b> ' + results.features[i].properties.owner + '</p>'+
-                                                  '<p><b>Status:</b> ' + results.features[i].properties.status + '</p>'+
+                                                  '<p><b>Status:</b> ' + results.features[i].properties.status +
+                                                    availFrm + availTo +
+                                                  '</p>'+
                                                   '<div id="vehicleImage"><img width="100px" height="75px" src="' + results.features[i].properties.image + '"></div>'
                                                   '</div>'+
                                                   '</div>';
